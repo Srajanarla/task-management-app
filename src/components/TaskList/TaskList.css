@@ -54,46 +54,14 @@
     }
   }
   
-  /* Mobile devices */
-  @media screen and (max-width: 576px) {
-    .task-table th,
-    .task-table td {
-      padding: 8px;
-      font-size: 14px;
-    }
-  
-    .task-table select {
-      padding: 5px;
+  @media only screen and (max-width: 480px) {
+    .task-table th, .task-table td {
+      padding: 6px;
       font-size: 12px;
-      width: 80px;
     }
   
     .task-table button {
-      padding: 5px 8px;
+      padding: 6px;
       font-size: 12px;
-    }
-  
-    /* Stack table rows for better mobile view */
-    .task-table, .task-table thead, .task-table tbody, .task-table th, .task-table td, .task-table tr {
-      display: block;
-    }
-  
-    .task-table thead tr {
-      display: none;
-    }
-  
-    .task-table td {
-      border: none;
-      position: relative;
-      padding-left: 50%;
-    }
-  
-    .task-table td:before {
-      content: attr(data-label);
-      position: absolute;
-      left: 10px;
-      width: 50%;
-      padding-right: 10px;
-      font-weight: bold;
     }
   }
