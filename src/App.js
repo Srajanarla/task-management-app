@@ -25,31 +25,14 @@ const App = () => {
   }, []);
 
 
-  const addTask = async(title, description, status) => {
-    const todoCount = tasks.filter(task => task.status === 'To Do').length;
-    if (status === 'To Do' && todoCount >= tasks.length * 0.5) {
-      alert("You can't add more 'To Do' tasks. 50% of tasks are already in 'To Do' status.");
-      return;
-    }
-    try {
-      const response = await axios.post(API_URL, {
-        title,
-        description,
-        status
-      });
-      setTasks([...tasks, response.data]);
-      console.log(tasks)
-    } catch (error) {
-      console.error('Error adding task:', error);
-    }
-  };
+
   
   const filteredTasks = tasks.filter(task => filter === 'All' || task.status === filter);
 
   return (
     <div className='container'>
       <h1>Task Management Application</h1>
-      <TaskForm addTask={addTask} />
+      <TaskForm tasks={tasks} setTasks={setTasks} />
       <TaskFilter setFilter={setFilter} />
       <TaskList tasks={filteredTasks} setTasks={setTasks}/>
     </div>

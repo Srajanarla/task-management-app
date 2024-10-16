@@ -1,10 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../TaskForm/TaskForm.css';
+import axios from 'axios';
 
-const TaskForm = ({ addTask }) => {
+const API_URL = 'https://670e175c073307b4ee456b4a.mockapi.io/tasks';
+
+const TaskForm = ({tasks, setTasks}) => {
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('To Do');
+
+
+  const addTask = async(title, description, status) => {
+    const todoCount = tasks.filter(task => task.status === 'To Do').length;
+    if (status === 'To Do' && todoCount >= tasks.length * 0.5) {
+      alert("You can't add more 'To Do' tasks. 50% of tasks are already in 'To Do' status.");
+      return;
+    }
+    try {
+      const response = await axios.post(API_URL, {
+        title,
+        description,
+        status
+      });
+      setTasks(prevTasks => [...prevTasks, response.data]);
+      console.log(tasks)
+    } catch (error) {
+      console.error('Error adding task:', error);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();

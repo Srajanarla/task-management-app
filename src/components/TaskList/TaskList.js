@@ -92,8 +92,8 @@ const TaskList = ({ tasks, setTasks }) => {
                       </select>
                     </td>
                     <td>
-                      <button onClick={() => handleEditSave(task.id)}>Save</button>
-                      <button onClick={() => setEditTaskId(null)}>Cancel</button>
+                      <button style={{ marginRight: '20px', width: '75px' }} onClick={() => handleEditSave(task.id)}>Save</button>
+                      <button style={{ marginTop: '5px', width: '75px' }} onClick={() => setEditTaskId(null)}>Cancel</button>
                     </td>
                   </>
                 ) : (
